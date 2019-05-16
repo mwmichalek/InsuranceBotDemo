@@ -1,0 +1,54 @@
+﻿#webchat {
+    width: 400px;
+    height: 400px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    visibility: hidden;
+    border: 2px solid black;
+}
+
+#robot {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+.speech-bubble {
+    position: absolute;
+    left: -140px;
+    top: -30px;
+    height: 60px;
+    background: #cccccc;
+    width: 120px;
+    border-radius: .4em;
+    padding: 5px 5px 25px 5px;
+    font-family: ff-meta-web-pro, arial, sans-serif;
+}
+
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 8px solid transparent;
+        border-left-color: #cccccc;
+        border-right: 0;
+        border-bottom: 0;
+        margin-top: -4px;
+        margin-right: -8px;
+    }
+
+
+.css-u4skb7 button {
+    border-radius: 8px;
+}
