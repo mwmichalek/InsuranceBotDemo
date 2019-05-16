@@ -1,0 +1,50 @@
+{
+  "name": "kvmd-bot-cdphp-survery",
+  "padlock": "npR9IyFxlLIbed1isjPJug==!vLygBX8qdjKgbqgTakDmHGq86iXhncWePTT76lgwj6vYKQ57hduh0KO9GU4Hp/Ki",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "cc5c815b-6f4f-44ea-9206-1c9916fd3706",
+      "subscriptionId": "d8ee901e-3d88-42dd-9e7e-784c040016e6",
+      "resourceGroup": "kvmd-rg-cdphp-survery",
+      "serviceName": "kvmd-bot-cdphp-survery",
+      "type": "abs",
+      "name": "kvmd-bot-cdphp-survery",
+      "id": "1"
+    },
+    {
+      "connectionString": "SHCinvUslsLN6YJUQl8WGQ==!P6db7wWGYUZRh9oMUhLPGI+BwL65r6kNkJjomSb0gWs+0hEw2qiKrBlXS8Ootf4M0CPT9NvhLeFWBorU9FyQsfRvNg7iW5+HzQG7tocdj/DwYkHpaASFE+IBB7w3ECl4Olanwky4LWvzzhewM1DOVcvb2f2SgsnkWk3WPTIvH6GuQH7uhf12su5arE6e4gYEihcsrnBZV3BiR+GXFQiX/SNuR9qkKnCQFIoKsk0a6WE=",
+      "tenantId": "cc5c815b-6f4f-44ea-9206-1c9916fd3706",
+      "subscriptionId": "d8ee901e-3d88-42dd-9e7e-784c040016e6",
+      "resourceGroup": "kvmd-rg-cdphp-survery",
+      "serviceName": "kvmdstrgcdphpsurvery",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "44d7faf1-1697-45e1-9827-81b80a27c278",
+      "appPassword": "BScfZ2/UbY7EFeNpaeUeJw==!1KkuJd3HSMN2npMeeQ/9boxuGwf6FWFip7FpNemkBuI=",
+      "endpoint": "https://kvmd-bot-cdphp-survery.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    },
+    {
+      "appId": "ab69ec3a-3699-4472-99b7-e484bf3d58a0",
+      "authoringKey": "W3SJHlJGeaiNzxUajYkH7Q==!G9RE1RQdVmILRBtxAIfFL59zFbU2quZHh/G5Y1gL23wVh5+jCiI2Xgi10H3zYHyT",
+      "version": "0.1",
+      "region": "westus",
+      "type": "luis",
+      "name": "BasicBotLuisApplication",
+      "id": "5"
+    }
+  ]
+}
