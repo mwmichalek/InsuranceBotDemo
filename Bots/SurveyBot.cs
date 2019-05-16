@@ -41,5 +41,31 @@ namespace CDPHP.Bot.Survey {
             // Run the Dialog with the new message Activity.
             await Dialog.Run(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
         }
+
+        protected override async Task OnEventActivityAsync(ITurnContext<IEventActivity> turnContext, CancellationToken cancellationToken) {
+            await base.OnEventActivityAsync(turnContext, cancellationToken);
+
+            await SendWelcomeMessageAsync(turnContext, cancellationToken);
+        }
+
+        
+
+        protected override async Task OnConversationUpdateActivityAsync(ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken) {
+            await base.OnConversationUpdateActivityAsync(turnContext, cancellationToken);
+
+            await SendWelcomeMessageAsync(turnContext, cancellationToken);
+        }
+
+        private async Task SendWelcomeMessageAsync(ITurnContext turnContext, CancellationToken cancellationToken) {
+            foreach (var member in turnContext.Activity.MembersAdded) {
+                if (member.Id != turnContext.Activity.Recipient.Id) {
+                    var reply = turnContext.Activity.CreateReply();
+                    reply.Text = "Hello!";
+                    await turnContext.SendActivityAsync(reply, cancellationToken);
+
+                    await Dialog.Run(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
+                }
+            }
+        }
     }
 }
