@@ -19,8 +19,6 @@ namespace CDPHP.Bot.Survey {
                 Choices = ChoiceFactory.ToChoices(choices),
                 Prompt = MessageFactory.Text("I've got just a few questions to help quote the best plan for your needs."),
                 RetryPrompt = MessageFactory.Text("I'm sorry I didn't understand your responce."),
-
-
             };
         }
 

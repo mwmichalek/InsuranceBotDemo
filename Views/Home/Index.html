@@ -9,7 +9,7 @@
     </style>
     <!--<link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />-->
     <!--<link href="styles/botchat.css" rel="stylesheet" />-->
-    <link href="styles/webchat.css" rel="stylesheet" />
+    <link href="styles/webchat.css?@DateTime.Now.Ticks" rel="stylesheet" />
 </head>
 
 <body style="background-image: url('images/fakebackground.png'); background-repeat: no-repeat;">
@@ -103,12 +103,9 @@
             botAvatarImage: 'images/green-bot.png',
             userAvatarImage: 'images/person.png',
             bubbleBorderRadius: 10,
-            bubbleFromUserBorderRadius: 10,
             suggestedActionBorderRadius: 10,
-            hideUploadButton: true
-    };
-
-    window.WebChat.
+            hideUploadButton: false
+        };
 
         window.WebChat.renderWebChat({
             directLine: window.WebChat.createDirectLine({ token: "KEu0Pnntxx4.iPnUpioKf7MMNOEHzhByHwUkKFnxtWeOkvmWAQEGrrU" }),
