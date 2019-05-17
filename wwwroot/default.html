@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Multi-turn prompts sample</title>
+    <title>CDPHP - Home Page</title>
     <style>
     </style>
     <!--<link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />-->
@@ -47,7 +47,7 @@
     <div id="robot">
 
         <div class="speech-bubble">
-            <h6>Thanks for checking this shit out. Can I help you?</h6>
+            <h6>Thanks for checking this out. Can I help you?</h6>
         </div>
 
         <img onclick="document.getElementById('webchat').style.visibility = 'visible';" width="50" height="60" src="images/green-bot.png" />
@@ -99,6 +99,8 @@
 
             */
 
+    var directline = window.WebChat.createDirectLine({ token: "KEu0Pnntxx4.iPnUpioKf7MMNOEHzhByHwUkKFnxtWeOkvmWAQEGrrU" });
+
         const styleOptions = {
             botAvatarImage: 'images/green-bot.png',
             userAvatarImage: 'images/person.png',
@@ -109,9 +111,15 @@
         };
 
         window.WebChat.renderWebChat({
-            directLine: window.WebChat.createDirectLine({ token: "KEu0Pnntxx4.iPnUpioKf7MMNOEHzhByHwUkKFnxtWeOkvmWAQEGrrU" }),
+            directLine: directline,
             styleOptions
         }, document.getElementById('webchat'));
+
+    directline.postActivity({
+        type: "event",
+        value: "welcome"
+    });
+     
 
 
 

@@ -1,10 +1,15 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Connector;
+using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
 
@@ -28,6 +33,7 @@ namespace CDPHP.Bot.Survey {
         }
 
         public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken)) {
+            Logger.LogInformation($"OnTurnAsync: {turnContext.Activity}");
             await base.OnTurnAsync(turnContext, cancellationToken);
 
             // Save any state changes that might have occured during the turn.
@@ -36,16 +42,45 @@ namespace CDPHP.Bot.Survey {
         }
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken) {
-            Logger.LogInformation("Running dialog with Message Activity.");
+            Logger.LogInformation($"OnMessageActivityAsync: {turnContext.Activity}");
 
             // Run the Dialog with the new message Activity.
             await Dialog.Run(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
         }
 
+        protected override async Task OnEventAsync(ITurnContext<IEventActivity> turnContext, CancellationToken cancellationToken) {
+            Logger.LogInformation($"OnEventActivityAsync: {turnContext.Activity}");
+            await base.OnEventAsync(turnContext, cancellationToken);
+        }
+
+        protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken) {
+            Logger.LogInformation($"OnMembersAddedAsync: {turnContext.Activity}");
+
+
+            await turnContext.SendActivityAsync("Hello!", null, null, cancellationToken);
+
+
+            await Dialog.Run(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
+
+            await base.OnMembersAddedAsync(membersAdded, turnContext, cancellationToken);
+        }
+
         protected override async Task OnEventActivityAsync(ITurnContext<IEventActivity> turnContext, CancellationToken cancellationToken) {
+            Logger.LogInformation($"OnEventActivityAsync: {turnContext.Activity}");
+
+
+            var eventActivity = turnContext.Activity.AsEventActivity();
+
+            if (eventActivity != null && ((string)eventActivity.Value) == "welcome") {
+                await turnContext.SendActivityAsync("Hello!", null, null, cancellationToken);
+
+
+                await Dialog.Run(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
+            }
+
             await base.OnEventActivityAsync(turnContext, cancellationToken);
 
-            await SendWelcomeMessageAsync(turnContext, cancellationToken);
+            
         }
 
         
@@ -53,7 +88,7 @@ namespace CDPHP.Bot.Survey {
         protected override async Task OnConversationUpdateActivityAsync(ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken) {
             await base.OnConversationUpdateActivityAsync(turnContext, cancellationToken);
 
-            await SendWelcomeMessageAsync(turnContext, cancellationToken);
+            //await SendWelcomeMessageAsync(turnContext, cancellationToken);
         }
 
         private async Task SendWelcomeMessageAsync(ITurnContext turnContext, CancellationToken cancellationToken) {
